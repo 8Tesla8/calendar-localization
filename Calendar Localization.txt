@@ -1,0 +1,53 @@
+import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+@Injectable()
+export class CustomDatepickerI18n extends NgbDatepickerI18n {
+
+    private _weekdays = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+    private _months = [
+        'JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTUBER', 'NOVEMBER', 'DECEMBER'];
+
+    constructor(
+        private _translate: TranslateService) {
+        super();
+    }
+
+    getWeekdayShortName(weekday: number): string {
+        return this._translate.instant("CALENDAR.WEEKDAY.SHORT." + this._weekdays[weekday - 1] );
+    }
+    getMonthShortName(month: number): string {
+        return this._translate.instant("CALENDAR.MONTH.SHORT." + this._months[month - 1] );
+    }
+    getMonthFullName(month: number): string {
+        return this.getMonthShortName(month);
+    }
+
+    getDayAriaLabel(date: NgbDateStruct): string {
+        return `${date.day}-${date.month}-${date.year}`;
+    }
+
+}
+
+
+tranlate
+  "CALENDAR.WEEKDAY.SHORT.MONDAY": "Mo",
+  "CALENDAR.WEEKDAY.SHORT.TUESDAY": "Tu",
+  "CALENDAR.WEEKDAY.SHORT.WEDNESDAY": "We",
+  "CALENDAR.WEEKDAY.SHORT.THURSDAY": "Th",
+  "CALENDAR.WEEKDAY.SHORT.FRIDAY": "Fr",
+  "CALENDAR.WEEKDAY.SHORT.SATURDAY": "Sa",
+  "CALENDAR.WEEKDAY.SHORT.SUNDAY": "Su",
+  "CALENDAR.MONTH.SHORT.JANUARY": "Jan",
+  "CALENDAR.MONTH.SHORT.FEBRUARY": "Feb",
+  "CALENDAR.MONTH.SHORT.MARCH": "Mar",
+  "CALENDAR.MONTH.SHORT.APRIL": "Apr",
+  "CALENDAR.MONTH.SHORT.MAY": "May",
+  "CALENDAR.MONTH.SHORT.JUNE": "Jun",
+  "CALENDAR.MONTH.SHORT.JULY": "Jul",
+  "CALENDAR.MONTH.SHORT.AUGUST": "Aug",
+  "CALENDAR.MONTH.SHORT.SEPTEMBER": "Sep",
+  "CALENDAR.MONTH.SHORT.OCTUBER": "Oct",
+  "CALENDAR.MONTH.SHORT.NOVEMBER": "Nov",
+  "CALENDAR.MONTH.SHORT.DECEMBER": "Dec"
